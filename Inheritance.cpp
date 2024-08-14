@@ -4,6 +4,8 @@
 #include <cmath>
 using namespace std;
 
+#define FLERR __FILE__,__LINE__
+
 class Parent {
     public:
         Parent()
@@ -35,30 +37,34 @@ class derived: protected Parent {
         int c;
     };
     
-int testFunc1(Parent* parent)
+int testFunc1(Parent* parent2)
 {
-    Parent* testc3 = testc2;
-    cout << testc2 << endl;
-    cout << testc3 << endl;
+    Parent* parent3 = parent2;
+    cout << parent3 << endl;
+    cout << parent2 << endl;
     return 0;
 }
 
-int testFunc2(Parent*& testc2)
+int testFunc2(Parent*& parent2)
 {
-    Parent* testc4 = testc2;
-    cout << testc2 << endl;
-    cout << testc4 << endl;
-    delete [] testc4;
+    Parent* parent4 = parent2;
+    cout << parent2 << endl;
+    cout << parent4 << endl;
+    delete [] parent4;
     return 0;
 }
 
 int main()
 {
+  cout << "line 59" << endl;
   Parent testc[2];
+  cout << "line 61" << endl;
   testFunc1(testc);
+  cout << "line 63" << endl;
   Parent* testc2 = new Parent[2];
-  cout << "line1" << endl;
+  cout << "line 65" << endl;
   testFunc2(testc2);
-  cout << "linen" << endl;
+  cout << "line 67" << endl;
   derived drv[2];
+  cout << "line 69" << endl;
 }
