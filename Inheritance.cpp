@@ -6,6 +6,7 @@ using namespace std;
 
 #define FLERR __FILE__,__LINE__
 
+
 class Parent {
     public:
         Parent()
@@ -36,6 +37,22 @@ class derived: protected Parent {
     private:
         int c;
     };
+
+class GodFather {
+    public:
+       GodFather(Parent *& _parent, derived *& _drvd, float *& _flt):  vito(1), sonny(0), fredo(2), parent(_parent), drvd(_drvd), flt(_flt) {
+           cout << "GodFather constructor" << endl;
+       }
+       GodFather(const GodFather & _godfather): vito(_godfather.vito), sonny(_godfather.sonny), fredo(_godfather.fredo), 
+                                                 parent(_godfather.parent), drvd(_godfather.drvd), flt(_godfather.flt) {}
+    private:
+       int vito;
+       int sonny;
+       int fredo;
+       Parent *& parent;
+       derived *& drvd;
+       float *& flt;
+};
     
 int testFunc1(Parent* parent2)
 {
@@ -65,6 +82,8 @@ int main()
   cout << "line 65" << endl;
   testFunc2(testc2);
   cout << "line 67" << endl;
-  derived drv[2];
+  derived* drv = new derived [2];
+  float flt = 0.2;
+  GodFather godfather(testc2,drv,flt);
   cout << "line 69" << endl;
 }
